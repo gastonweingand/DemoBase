@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+			<Title>Singleton</Title>
+			<Shortcut>singleton</Shortcut>
+			<Description>
+				Creates a Singleton Class following the discussion on that post of mine:
+				http://blogs.ugidotnet.org/piyo/archive/2005/09/14/Singleton_C_NET.aspx
+			</Description>
+			<Author>Simone Chiaretta</Author>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>className</ID>
+					<ToolTip>Here the name of your singleton class</ToolTip>
+					<Default>Singleton</Default>
+					<Function></Function>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+				<![CDATA[
+        public sealed class $className$
+									{
+										private readonly static $className$ _instance = new $className$();
+
+										public static $className$ Current
+											{
+													get
+													{
+															return _instance;
+													}
+											}
+
+										private $className$()
+										{
+       										//Implent here the initialization of your singleton
+										}
+									}
+                  ]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

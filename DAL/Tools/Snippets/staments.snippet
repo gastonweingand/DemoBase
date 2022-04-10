@@ -1,0 +1,67 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>DAL Statements</Title>
+            <Shortcut>Statements</Shortcut>
+            <Description>Code snippet for Statements</Description>
+            <Author>Gastón weingand-2020</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>tabla</ID>
+                    <ToolTip>Nombre de la tabla</ToolTip>
+                    <Default></Default>
+                </Literal>
+                <Literal>
+                    <ID>campos</ID>
+                    <ToolTip>Campos de la tabla</ToolTip>
+                    <Default></Default>
+                </Literal>
+                <Literal>
+                    <ID>parameters</ID>
+                    <Function>Parametros para statement</Function>
+                    <Default></Default>
+                </Literal>
+                 <Literal>
+                    <ID>identificador</ID>
+                    <Function>identificador del id</Function>
+                    <Default></Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+                <![CDATA[
+                    #region Statements
+                    private string InsertStatement
+                    {
+                        get => "INSERT INTO [dbo].[$tabla$] ($campos$) VALUES ($parameters$)";
+                    }
+
+                    private string UpdateStatement
+                    {
+                        get => "UPDATE [dbo].[$tabla$] SET ($campos$) WHERE $identificador$ = @$identificador$";
+                    }
+
+                    private string DeleteStatement
+                    {
+                         get => "DELETE FROM [dbo].[$tabla$] WHERE $identificador$ = @$identificador$";
+                    }
+
+                    private string SelectOneStatement
+                    {
+                        get => "SELECT $identificador$, $campos$ FROM [dbo].[$tabla$] WHERE $identificador$ = @$identificador$";
+                    }
+
+                    private string SelectAllStatement
+                    {
+                        get => "SELECT $identificador$, $campos$ FROM [dbo].[$tabla$]";
+                    }
+                    #endregion
+                ]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>
