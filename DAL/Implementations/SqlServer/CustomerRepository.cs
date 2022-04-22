@@ -1,6 +1,8 @@
 ﻿using DAL.Contracts;
+using DAL.Implementations.SqlServer.Adapter;
 using DAL.Tools;
 using DomainModel;
+using Services.Services.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -31,7 +33,7 @@ namespace DAL.Implementations.SqlServer
 
         private string SelectOneStatement
         {
-            get => "SELECT IdCustomer, Name, SurName, BirthDate, DNI FROM [dbo].[Customer] WHERE IdCustomer = @IdCustomer";
+            get => "SELECT [IdCustomer] ,[FirstName],[LastName] ,[DateBirth] ,[Doc] ,[IdAddress] FROM [dbo].[Customer] WHERE IdCustomer = @IdCustomer";
         }
 
         private string SelectAllStatement
@@ -49,6 +51,8 @@ namespace DAL.Implementations.SqlServer
 
         public void Delete(Guid id)
         {
+            string word = "Gonzalo".Translate();
+
             throw new NotImplementedException();
         }
 
@@ -59,8 +63,22 @@ namespace DAL.Implementations.SqlServer
 
         public Customer SelectOne(Guid id)
         {
-            Console.WriteLine("Llamando al selectOne de SqlServer");
-            return null;
+            //7285B85B-7771-EA11-8198-98AF655C0AE3
+
+            Customer customerGet = null; 
+
+            using (var reader = SqlHelper.ExecuteReader(SelectOneStatement, System.Data.CommandType.Text,
+                                            new SqlParameter[] { new SqlParameter("@IdCustomer", id) }))
+            {
+                object[] values = new object[reader.FieldCount];
+
+                if(reader.Read())
+                {
+                    reader.GetValues(values);
+                    customerGet = CustomerAdapter.Current.Adapt(values);
+                }
+            }
+            return customerGet;
         }
 
         public void Update(Customer obj)

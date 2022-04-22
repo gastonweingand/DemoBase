@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{52E11E2F-EAC4-4C6E-91B5-40171CA9DBB1}</ProjectGuid>
+    <ProjectGuid>{2B83AD36-6866-467D-8D40-6D2C032CDB93}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAL</RootNamespace>
-    <AssemblyName>DAL</AssemblyName>
+    <RootNamespace>BLL</RootNamespace>
+    <AssemblyName>BLL</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,8 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,33 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IAdapter.cs" />
-    <Compile Include="Contracts\IGenericRepository.cs" />
-    <Compile Include="DemoParametrizacion.cs" />
-    <Compile Include="DemoSingleton.cs" />
-    <Compile Include="Factories\CustomerFactory.cs" />
-    <Compile Include="Implementations\PlainText\CustomerRepository.cs" />
-    <Compile Include="Implementations\SqlServer\Adapter\CustomerAdapter.cs" />
-    <Compile Include="Implementations\SqlServer\CustomerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tools\SqlHelper.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Tools\Snippets\singleton.snippet" />
-    <None Include="Tools\Snippets\staments.snippet" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Implementations\PlainText\Adapter\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
-      <Project>{ed69f2cc-f8e8-4c1f-b7e9-eb8edc28907e}</Project>
-      <Name>DomainModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Services\Services.csproj">
-      <Project>{39225349-001e-4c38-a97d-09d534deb73a}</Project>
-      <Name>Services</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

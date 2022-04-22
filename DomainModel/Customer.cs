@@ -8,13 +8,17 @@ namespace DomainModel
 {
     public class Customer
     {
-        public String Name { get; set; }
+        public Customer()
+        {
+            this.IdCustomer = Guid.NewGuid();
+        }
+        public String FirstName { get; set; }
 
-        public String SurName { get; set; }
+        public String LastName { get; set; }
 
-        public DateTime BirthDate { get; set; }
+        public DateTime DateBirth { get; set; }
 
-        public String DNI { get; set; }
+        public String Doc { get; set; }
 
         public Guid IdCustomer { get; set; }
     }
