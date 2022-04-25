@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Implementations.SqlServer
 {
-    public class CustomerRepository : IGenericRepository<Customer>
+    internal class CustomerRepository : IGenericRepository<Customer>
     {
 
         #region Statements

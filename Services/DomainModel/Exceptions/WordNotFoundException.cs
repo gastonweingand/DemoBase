@@ -13,7 +13,7 @@ namespace Services.DomainModel.Exceptions
         {
 
         }
-        public WordNotFoundException(): base("La palabra no fue encontrada".Translate())
+        public WordNotFoundException(): base("La palabra no fue encontrada")
         {
 
         }

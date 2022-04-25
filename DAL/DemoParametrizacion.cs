@@ -12,7 +12,7 @@ namespace DAL
     /// <summary>
     /// Clase como abstracción de la parametrización del sistema...
     /// </summary>
-    public class DemoParametrizacion
+    internal class DemoParametrizacion
     {
         #region Statements
         private string InsertStatement

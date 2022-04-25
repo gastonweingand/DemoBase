@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace DAL.Implementations.SqlServer.Adapter
 {
 
-    public sealed class CustomerAdapter : IAdapter<Customer>
+    internal sealed class CustomerAdapter : IAdapter<Customer>
     {
         #region Singleton
         private readonly static CustomerAdapter _instance = new CustomerAdapter();

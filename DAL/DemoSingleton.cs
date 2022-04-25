@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DAL
 {
 
-	public sealed class DemoSingleton 
+	internal sealed class DemoSingleton 
 	{
 		#region Singleton
 		private readonly static DemoSingleton _instance = new DemoSingleton();
@@ -34,7 +34,7 @@ namespace DAL
 		}
 	}
 
-	public static class DemoStatic
+	internal static class DemoStatic
 	{
 		public static int Nro { get; set; }
 

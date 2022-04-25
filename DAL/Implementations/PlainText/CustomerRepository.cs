@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Implementations.PlainText
 {
-    public class CustomerRepository : IGenericRepository<Customer>
+    internal class CustomerRepository : IGenericRepository<Customer>
     {
         public void Add(Customer obj)
         {
