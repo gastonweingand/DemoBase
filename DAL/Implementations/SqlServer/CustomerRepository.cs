@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics.Tracing;
 
 namespace DAL.Implementations.SqlServer
 {
@@ -21,7 +22,7 @@ namespace DAL.Implementations.SqlServer
             get => "INSERT INTO [dbo].[Customer] (IdCustomer, Name, SurName, BirthDate, DNI) VALUES (@IdCustomer, @Name, @SurName, @BirthDate, @DNI)";
         }
 
-        private string UpdateStatement  
+        private string UpdateStatement
         {
             get => "UPDATE [dbo].[Customer] SET (Name = @Name, SurName = @SurName, BirthDate = @BirthDate, DNI = @DNI) WHERE IdCustomer = @IdCustomer";
         }
@@ -63,21 +64,29 @@ namespace DAL.Implementations.SqlServer
 
         public Customer SelectOne(Guid id)
         {
-            //7285B85B-7771-EA11-8198-98AF655C0AE3
+            //Services.Services.LoggerService.WriteLog("Guardando un customer", EventLevel.Informational, "sin usuario");
+            Customer customerGet = null;
 
-            Customer customerGet = null; 
-
-            using (var reader = SqlHelper.ExecuteReader(SelectOneStatement, System.Data.CommandType.Text,
-                                            new SqlParameter[] { new SqlParameter("@IdCustomer", id) }))
+            try
             {
-                object[] values = new object[reader.FieldCount];
-
-                if(reader.Read())
+                using (var reader = SqlHelper.ExecuteReader(SelectOneStatement, System.Data.CommandType.Text,
+                                                new SqlParameter[] { new SqlParameter("@IdCustomer", id) }))
                 {
-                    reader.GetValues(values);
-                    customerGet = CustomerAdapter.Current.Adapt(values);
+                    object[] values = new object[reader.FieldCount];
+
+                    if (reader.Read())
+                    {
+                        reader.GetValues(values);
+                        customerGet = CustomerAdapter.Current.Adapt(values);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Services.Services.ExceptionService.Handle(ex);
+                //ex.Handle();
+            }
+
             return customerGet;
         }
 

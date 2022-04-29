@@ -17,6 +17,8 @@ namespace UI
     {
         static void Main(string[] args)
         {
+            UsoDeFactory();
+
             try
             {
                 Customer customer = new Customer()
@@ -36,6 +38,7 @@ namespace UI
             catch (Exception ex)
             {
                 Console.WriteLine($"Mensaje: {ex.Message}, StackTrace: {ex.StackTrace}");
+                
             }
           
 

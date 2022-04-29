@@ -42,12 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\ExceptionBLL.cs" />
     <Compile Include="BLL\LanguageBLL.cs" />
+    <Compile Include="BLL\LoggerBLL.cs" />
     <Compile Include="DAL\LanguageRepository.cs" />
+    <Compile Include="DAL\LoggerRepository.cs" />
     <Compile Include="DomainModel\Exceptions\WordNotFoundException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ExceptionService.cs" />
     <Compile Include="Services\Extensions\StringExtension.cs" />
     <Compile Include="Services\LanguageManager.cs" />
+    <Compile Include="Services\LoggerService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
