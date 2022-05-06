@@ -83,8 +83,7 @@ namespace DAL.Implementations.SqlServer
             }
             catch (Exception ex)
             {
-                Services.Services.ExceptionService.Handle(ex);
-                //ex.Handle();
+                ex.Handle(this);
             }
 
             return customerGet;

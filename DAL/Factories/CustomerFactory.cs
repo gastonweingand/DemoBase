@@ -38,9 +38,6 @@ namespace DAL.Factories
 			}
 			return null;
 		}
-
-
-
 	}
 
 }

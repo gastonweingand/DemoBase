@@ -10,14 +10,63 @@ using System.Threading;
 using System.Globalization;
 using Services.Services.Extensions;
 using BLL.BusinessExceptions;
+using Services.DomainModel.Security.Composite;
 
 namespace UI
 {
     class Program
     {
+        private static void RecorrerComposite(List<Component> components, string tab)
+        {
+            foreach (var item in components)
+            {
+                if (item.ChildrenCount() == 0)
+                {
+                    //Estoy ante un elemento de tipo Patente
+                    Patente patente1 = item as Patente;
+                    Console.WriteLine($"{tab} Patente: {patente1.FormName}");
+                }
+                else
+                {
+                    Familia familia = item as Familia;
+                    Console.WriteLine($"{tab} Familia: {familia.Nombre}");
+                    RecorrerComposite(familia.GetChildrens(), tab + "-");
+                }
+            }
+        }
+
+
         static void Main(string[] args)
         {
-            UsoDeFactory();
+            //Usuario usuario = new Usuario();
+
+            //usuario.Permisos.Add();
+
+            //List<Patente> patentes = usuario.GetPatentesAll();
+
+            Patente patente = new Patente() { FormName = "frmGestionVentas", MenuItemName = "Gestión de ventas" };
+            Patente patente2 = new Patente() { FormName = "frmGestionCompras", MenuItemName = "Gestión de compras" };
+            Patente patente3 = new Patente() { FormName = "frmReportesGenerales", MenuItemName = "Reportes general" };
+            Patente patente4 = new Patente() { FormName = "frmPerfilUsuario", MenuItemName = "Perfil" };
+            Patente patente5 = new Patente() { FormName = "frmPrincipal", MenuItemName = "Principal" };
+
+            Familia familiaGestionVentas = new Familia(patente, "Rol Gestión Ventas");
+            Familia familiaGestionCompras = new Familia(patente2, "Rol Gestión Compras");
+            familiaGestionCompras.Add(patente3);
+
+            Familia administrador = new Familia(familiaGestionVentas, "Rol Administrador");
+            administrador.Add(familiaGestionCompras);
+            administrador.Add(patente4);
+
+            Usuario usuario = new Usuario();
+            usuario.Permisos.Add(administrador);
+            usuario.Permisos.Add(patente5);
+
+            Console.WriteLine("Listado de permisos de mi usuario:");
+
+            RecorrerComposite(usuario.Permisos, "-");
+
+            //UsoDeFactory();
 
             try
             {
@@ -98,7 +147,10 @@ namespace UI
 
         private static void UsoDeFactory()
         {
-            Customer clienteGet = DAL.Factories.CustomerFactory.Current.GetFactory("sqlserver").SelectOne(Guid.Parse("7285B85B-7771-EA11-8198-98AF655C0AE3"));
+            Customer customerGet = BLL.Services.CustomerService.Current.SelectOne(Guid.Parse("7285B85B-7771-EA11-8198-98AF655C0AE3"));
+            //Customer clienteGet = DAL.Factories.CustomerFactory.Current.GetFactory("sqlserver").SelectOne(Guid.Parse("7285B85B-7771-EA11-8198-98AF655C0AE3"));
+
+
 
             DAL.Factories.CustomerFactory.Current.GetFactory("sqlserver").SelectOne(Guid.Empty);
             DAL.Factories.CustomerFactory.Current.GetFactory("plaintext").SelectOne(Guid.Empty);

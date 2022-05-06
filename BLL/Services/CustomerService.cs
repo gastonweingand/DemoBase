@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using DAL.Contracts;
 using DAL.Factories;
 using BLL.BusinessExceptions;
+using Services.Services.Extensions;
 
 namespace BLL.Services
 {
@@ -39,10 +40,24 @@ namespace BLL.Services
             //Para poder dar de alta un nuevo cliente, el mismo deberá ser mayor de edad...
 
             //Valido si es mejor de edad
-            if (obj.DateBirth > DateTime.Now.AddYears(-18))
-                throw new ClienteMayorEdadException();
+            try
+            {
+                if (obj.DateBirth > DateTime.Now.AddYears(-18))
+                    throw new ClienteMayorEdadException();
 
-            CustomerFactory.Current.GetFactory("sqlserver").Add(obj);
+                CustomerFactory.Current.GetFactory("sqlserver").Add(obj);
+            }
+            catch (ClienteMayorEdadException ex)
+            {
+                //Aplicar política especial solamente para clientmayor...
+
+                ex.Handle(this);
+            }
+            catch (Exception ex)
+            {
+                ex.Handle(this);
+            }
+            
 
         }
 
@@ -63,7 +78,15 @@ namespace BLL.Services
 
         public Customer SelectOne(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return DAL.Factories.CustomerFactory.Current.GetFactory("sqlserver").SelectOne(id);
+            }
+            catch (Exception ex)
+            {
+                ex.Handle(this);
+                return null; //Revisar con el retrowh de la BLL...
+            }
         }
 
     }
