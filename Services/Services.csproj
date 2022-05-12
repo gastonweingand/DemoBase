@@ -46,8 +46,11 @@
     <Compile Include="BLL\ExceptionBLL.cs" />
     <Compile Include="BLL\LanguageBLL.cs" />
     <Compile Include="BLL\LoggerBLL.cs" />
-    <Compile Include="DAL\LanguageRepository.cs" />
-    <Compile Include="DAL\LoggerRepository.cs" />
+    <Compile Include="DAL\Contracts\IAdapter.cs" />
+    <Compile Include="DAL\Contracts\IGenericRepository.cs" />
+    <Compile Include="DAL\Factory\ServiceFactory.cs" />
+    <Compile Include="DAL\Implementations\LanguageRepository.cs" />
+    <Compile Include="DAL\Implementations\LoggerRepository.cs" />
     <Compile Include="DomainModel\Exceptions\WordNotFoundException.cs" />
     <Compile Include="DomainModel\Security\Composite\Component.cs" />
     <Compile Include="DomainModel\Security\Composite\Familia.cs" />

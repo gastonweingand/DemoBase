@@ -8,17 +8,35 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Services.DAL
+namespace Services.DAL.Implementations
 {
-    internal static class LanguageRepository
-    {
-        private static string basePath = ConfigurationManager.AppSettings["LanguagePath"];
 
-        public static string Find(string word)
+    internal sealed class LanguageRepository
+    {
+        #region Singleton
+        private readonly static LanguageRepository _instance = new LanguageRepository();
+
+        public static LanguageRepository Current
         {
-            using(var sr = new StreamReader(basePath + "." + Thread.CurrentThread.CurrentCulture.Name))
+            get
             {
-                while(!sr.EndOfStream)
+                return _instance;
+            }
+        }
+
+        private LanguageRepository()
+        {
+            //Implement here the initialization code
+        }
+        #endregion
+
+        private string basePath = ConfigurationManager.AppSettings["LanguagePath"];
+
+        public string Find(string word)
+        {
+            using (var sr = new StreamReader(basePath + "." + Thread.CurrentThread.CurrentCulture.Name))
+            {
+                while (!sr.EndOfStream)
                 {
                     string[] line = sr.ReadLine().Split('=');
 
@@ -37,13 +55,13 @@ namespace Services.DAL
             throw new WordNotFoundException();
         }
 
-        public static void WriteNewWord(string word, string value)
+        public void WriteNewWord(string word, string value)
         {
 
 
         }
 
-        public static Dictionary<string, string> FindAll()
+        public Dictionary<string, string> FindAll()
         {
             return null;
         }
@@ -52,10 +70,10 @@ namespace Services.DAL
         /// Generar una implementación que lea las extensiones de todos mis archivos dentro de I18n
         /// </summary>
         /// <returns></returns>
-        public static List<string> GetCurrentCultures()
+        public List<string> GetCurrentCultures()
         {
             return new List<string>();
         }
-
     }
+
 }

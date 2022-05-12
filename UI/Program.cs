@@ -1,5 +1,4 @@
-﻿using DAL;
-using DomainModel;
+﻿using DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +10,7 @@ using System.Globalization;
 using Services.Services.Extensions;
 using BLL.BusinessExceptions;
 using Services.DomainModel.Security.Composite;
+using BLL.Services;
 
 namespace UI
 {
@@ -153,13 +153,9 @@ namespace UI
 
         private static void UsoDeFactory()
         {
-            Customer customerGet = BLL.Services.CustomerService.Current.SelectOne(Guid.Parse("7285B85B-7771-EA11-8198-98AF655C0AE3"));
+            Customer customerGet = CustomerService.Current.SelectOne(Guid.Parse("7285B85B-7771-EA11-8198-98AF655C0AE3"));
             //Customer clienteGet = DAL.Factories.CustomerFactory.Current.GetFactory("sqlserver").SelectOne(Guid.Parse("7285B85B-7771-EA11-8198-98AF655C0AE3"));
 
-
-
-            DAL.Factories.CustomerFactory.Current.GetFactory("sqlserver").SelectOne(Guid.Empty);
-            DAL.Factories.CustomerFactory.Current.GetFactory("plaintext").SelectOne(Guid.Empty);
         }
     }
 }

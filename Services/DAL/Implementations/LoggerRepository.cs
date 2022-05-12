@@ -8,14 +8,32 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Services.DAL
+namespace Services.DAL.Implementations
 {
-    internal static class LoggerRepository
-    {
-        private static string pathLog = ConfigurationManager.AppSettings["PathLog"];
 
-        private static string pathFile = ConfigurationManager.AppSettings["LogFileName"]; 
-        public static void WriteLog(string message, EventLevel level, string user)            
+    public sealed class LoggerRepository
+    {
+        #region Singleton
+        private readonly static LoggerRepository _instance = new LoggerRepository();
+
+        public static LoggerRepository Current
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
+        private LoggerRepository()
+        {
+            //Implement here the initialization code
+        }
+        #endregion
+
+        private string pathLog = ConfigurationManager.AppSettings["PathLog"];
+
+        private string pathFile = ConfigurationManager.AppSettings["LogFileName"];
+        public void WriteLog(string message, EventLevel level, string user)
         {
             string fileName = pathLog + DateTime.Now.ToString("yyyyMMdd") + pathFile;
 
@@ -29,8 +47,6 @@ namespace Services.DAL
                 string fromattedMessage = $"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss tt")} [LEVEL {level.ToString()}] User: {user}, Mensaje: {message}";
                 streamWriter.WriteLine(fromattedMessage);
             }
-
-          
         }
-    }
+    }   
 }

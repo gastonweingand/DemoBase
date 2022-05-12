@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Services.DAL.Factory;
+using Services.DAL.Implementations;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
@@ -12,7 +14,7 @@ namespace Services.BLL
      
         public static void WriteLog(string message, EventLevel level, string user)
         {
-            DAL.LoggerRepository.WriteLog(message, level, user);
+            ServiceFactory.LoggerRepository.WriteLog(message, level, user);
 
             //Definir acá las políticas de escritura..
             //switch(level)

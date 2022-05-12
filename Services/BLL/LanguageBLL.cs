@@ -1,4 +1,6 @@
-﻿using Services.DomainModel.Exceptions;
+﻿using Services.DAL.Factory;
+using Services.DAL.Implementations;
+using Services.DomainModel.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +17,11 @@ namespace Services.BLL
         {
             try
             {
-                return DAL.LanguageRepository.Find(word);
+                return ServiceFactory.LanguageRepository.Find(word);
             }
             catch (WordNotFoundException ex)
             {
-                DAL.LanguageRepository.WriteNewWord(word, String.Empty);
+                ServiceFactory.LanguageRepository.WriteNewWord(word, String.Empty);
                 return word;
             }
         }

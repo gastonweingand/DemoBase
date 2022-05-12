@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Contracts;
-using DAL.Factories;
 using BLL.BusinessExceptions;
 using Services.Services.Extensions;
+using DAL.Factories;
 
 namespace BLL.Services
 {
@@ -45,7 +45,7 @@ namespace BLL.Services
                 if (obj.DateBirth > DateTime.Now.AddYears(-18))
                     throw new ClienteMayorEdadException();
 
-                CustomerFactory.Current.GetFactory("sqlserver").Add(obj);
+                ApplicationFactory.CustomerRepository.Add(obj);
             }
             catch (ClienteMayorEdadException ex)
             {
@@ -80,7 +80,7 @@ namespace BLL.Services
         {
             try
             {
-                return DAL.Factories.CustomerFactory.Current.GetFactory("sqlserver").SelectOne(id);
+                return ApplicationFactory.CustomerRepository.SelectOne(id);
             }
             catch (Exception ex)
             {
