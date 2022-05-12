@@ -57,6 +57,7 @@ namespace UI
             Familia administrador = new Familia(familiaGestionVentas, "Rol Administrador");
             administrador.Add(familiaGestionCompras);
             administrador.Add(patente4);
+            administrador.Add(patente5);
 
             Usuario usuario = new Usuario();
             usuario.Permisos.Add(administrador);
@@ -64,7 +65,12 @@ namespace UI
 
             Console.WriteLine("Listado de permisos de mi usuario:");
 
-            RecorrerComposite(usuario.Permisos, "-");
+            List<Patente> patentesUser = usuario.GetPatentesAll();
+
+            foreach (var item in patentesUser)
+            {
+                Console.WriteLine($"Patente: {item.FormName}");
+            }
 
             //UsoDeFactory();
 

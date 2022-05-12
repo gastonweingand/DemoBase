@@ -26,7 +26,47 @@ namespace Services.DomainModel.Security.Composite
         /// <returns></returns>
         public List<Patente> GetPatentesAll()
         {
-            return null;
+            List<Patente> patentesDistinct = new List<Patente>();
+
+            RecorrerComposite(patentesDistinct, Permisos, "-");
+
+            return patentesDistinct;
+        }
+
+        private static void RecorrerComposite(List<Patente> patentes, List<Component> components, string tab)
+        {
+            foreach (var item in components)
+            {
+                if (item.ChildrenCount() == 0)
+                {
+                    //Estoy ante un elemento de tipo Patente
+                    Patente patente1 = item as Patente;
+                    Console.WriteLine($"{tab} Patente: {patente1.FormName}");
+
+                    if(!patentes.Exists(o => o.FormName == patente1.FormName))
+                        patentes.Add(patente1);
+
+                    //bool existe = false;
+
+                    //foreach (var item2 in patentes)
+                    //{
+                    //    if(item2.FormName == patente1.FormName)
+                    //    {
+                    //        existe = true;
+                    //        break;
+                    //    }
+                    //}
+
+                    //if(!existe)
+                    //    patentes.Add(patente1);
+                }
+                else
+                {
+                    Familia familia = item as Familia;
+                    Console.WriteLine($"{tab} Familia: {familia.Nombre}");
+                    RecorrerComposite(patentes, familia.GetChildrens(), tab + "-");
+                }
+            }
         }
 
     }
