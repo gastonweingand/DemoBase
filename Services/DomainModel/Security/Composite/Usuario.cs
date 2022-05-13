@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,14 @@ namespace Services.DomainModel.Security.Composite
         public string Nombre { get; set; }
 
         public string Password { get; set; }
+
+        public string HashPassword
+        {
+            get
+            {
+                return CryptographyService.HashPassword(this.Password);
+            }
+        }
 
         public List<Component> Permisos { get; set; }
 

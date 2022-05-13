@@ -11,6 +11,8 @@ using Services.Services.Extensions;
 using BLL.BusinessExceptions;
 using Services.DomainModel.Security.Composite;
 using BLL.Services;
+using Services.DomainModel.Security.Composite;
+using Services.Services;
 
 namespace UI
 {
@@ -35,9 +37,28 @@ namespace UI
             }
         }
 
-
         static void Main(string[] args)
         {
+            Usuario user = new Usuario();
+            user.Password = "qwerty";
+            Console.WriteLine(user.HashPassword);
+
+            Patente patenteGet = LoginService.SelectOnePatente(Guid.Parse("3106275D-9878-4629-8EE1-44157892A51E"));
+
+            Console.WriteLine(patenteGet.FormName);
+
+            foreach (var item in LoginService.SelectAllPatentes())
+            {
+                Console.WriteLine(item.FormName + " " + item.MenuItemName);
+            }
+
+            Familia familia = LoginService.SelectOneFamilia(Guid.Parse("73e24248-f0f2-4c33-9b63-377fcd292813"));
+
+            Console.WriteLine(familia.Nombre);
+
+            RecorrerComposite(familia.GetChildrens(), "-");
+
+
             //Usuario usuario = new Usuario();
 
             //usuario.Permisos.Add();
@@ -86,16 +107,16 @@ namespace UI
 
                 BLL.Services.CustomerService.Current.Add(customer);
             }
-            catch(ClienteMayorEdadException ex)
+            catch (ClienteMayorEdadException ex)
             {
                 Console.WriteLine($"Exception del negocio: {ex.Message}, Helplink: {ex.HelpLink}");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Mensaje: {ex.Message}, StackTrace: {ex.StackTrace}");
-                
+
             }
-          
+
 
             //BLL.Services.CustomerService.Current.Add("312222", DateTime.Now.AddYears(-20), "Marcelo", "Di Deo");
 

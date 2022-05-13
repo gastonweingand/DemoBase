@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Services.DAL.Implementations
 {
 
-    public sealed class LoggerRepository
+    internal sealed class LoggerRepository
     {
         #region Singleton
         private readonly static LoggerRepository _instance = new LoggerRepository();

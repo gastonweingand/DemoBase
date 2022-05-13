@@ -23,6 +23,10 @@ namespace Services.DomainModel.Security.Composite
 
 		private List<Component> childrens = new List<Component>();
 
+        public Familia()
+        {
+
+        }
         public Familia(Component component, string nombre)
         {
 			childrens.Add(component);
