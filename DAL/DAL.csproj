@@ -57,6 +57,7 @@
     <Compile Include="Tools\SqlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataBase\demoDB.bak" />
     <None Include="Tools\Snippets\singleton.snippet" />
     <None Include="Tools\Snippets\staments.snippet" />
   </ItemGroup>

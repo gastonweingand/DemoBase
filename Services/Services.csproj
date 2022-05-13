@@ -77,6 +77,8 @@
     <Compile Include="Services\LoggerService.cs" />
     <Compile Include="Services\LoginService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="DAL\DataBase\SecurityDB.bak" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
