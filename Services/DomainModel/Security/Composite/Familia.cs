@@ -43,6 +43,7 @@ namespace Services.DomainModel.Security.Composite
 		/// 
 		/// <param name="component"></param>
 		public override void Add(Component component){
+			//Validar que no tenga referencias circulares...
 			childrens.Add(component);
 		}
 

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Services.DAL.Contracts
 {
-    internal interface IJoinRepository<T, P>
+    internal interface IJoinRepository<T>
     {
         void Delete(T obj);
 
         void GetChildren(T obj);
 
-        void Add(T obj, List<P> hijos);
+        void Add(T obj);
 
     }
 }

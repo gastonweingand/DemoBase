@@ -13,6 +13,14 @@ namespace Services.DomainModel.Security.Composite
 
         public string Password { get; set; }
 
+        public string HashDH
+        {
+            get
+            {
+                return CryptographyService.HashPassword(Nombre + Password);
+            }
+        }
+
         public string HashPassword
         {
             get

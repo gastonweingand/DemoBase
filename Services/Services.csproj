@@ -52,6 +52,7 @@
     <Compile Include="DAL\Factory\ServiceFactory.cs" />
     <Compile Include="DAL\Implementations\Adapter\FamiliaAdapter.cs" />
     <Compile Include="DAL\Implementations\Adapter\PatenteAdapter.cs" />
+    <Compile Include="DAL\Implementations\Adapter\UsuarioAdapter.cs" />
     <Compile Include="DAL\Implementations\FamiliaPatenteRepository.cs" />
     <Compile Include="DAL\Implementations\FamiliaFamiliaRepository.cs" />
     <Compile Include="DAL\Implementations\FamiliaRepository.cs" />

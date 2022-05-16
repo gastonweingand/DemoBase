@@ -70,7 +70,7 @@ namespace Services.DAL.Implementations
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Familia> SelectAll()
+        public IEnumerable<Familia> SelectAll(string TSQLfilter)
         {
             throw new NotImplementedException();
         }

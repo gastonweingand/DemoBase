@@ -58,6 +58,15 @@ namespace UI
 
             RecorrerComposite(familia.GetChildrens(), "-");
 
+            user.Permisos.Clear();
+
+            user.Permisos.Add(familia);
+
+            foreach (var item in user.GetPatentesAll())
+            {
+                Console.WriteLine($"Patente: {item.MenuItemName}");
+            }
+
 
             //Usuario usuario = new Usuario();
 
