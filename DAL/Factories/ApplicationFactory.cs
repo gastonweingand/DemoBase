@@ -1,5 +1,6 @@
 ﻿using DAL.Contracts;
 using DomainModel;
+using DomainModel.DomainParcial;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,6 +16,10 @@ namespace DAL.Factories
 
         public static IGenericRepository<Customer> CustomerRepository { get; private set; }
 
+        public static IGenericRepository<Almacen> AlmacenRepository { get; private set; }
+
+        public static IGenericRepository<Movimiento> MovimientoRepository { get; private set; }
+
         static ApplicationFactory()
         {
             if (backendDS == "sqlserver")
@@ -24,6 +29,11 @@ namespace DAL.Factories
             else if (backendDS == "plaintext")
             {
                 CustomerRepository = new DAL.Implementations.PlainText.CustomerRepository();
+            }
+            else if (backendDS == "memory")
+            {
+                AlmacenRepository = new DAL.Implementations.Memory.AlmacenRepository();
+                MovimientoRepository = new DAL.Implementations.Memory.MovimientoRepository();
             }
         }
     }

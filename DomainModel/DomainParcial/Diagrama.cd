@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DomainModel.DomainParcial.Almacen">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAiAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>DomainParcial\Almacen.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Stock" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DomainModel.DomainParcial.Deposito">
+    <Position X="10.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainParcial\Deposito.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DomainModel.DomainParcial.DetalleMovimiento">
+    <Position X="14" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainParcial\DetalleMovimiento.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Producto" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DomainModel.DomainParcial.Producto">
+    <Position X="16.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAARAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainParcial\Producto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DomainModel.DomainParcial.Stock">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainParcial\Stock.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Producto" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DomainModel.DomainParcial.Tienda">
+    <Position X="13" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainParcial\Tienda.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DomainModel.DomainParcial.Movimiento">
+    <Position X="9.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAEAgABAAE=</HashCode>
+      <FileName>DomainParcial\Movimiento.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Usuario" />
+      <Property Name="Origen" />
+      <Property Name="Destino" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="DetalleMovimientos" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DomainModel.DomainParcial.Usuario">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainParcial\Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

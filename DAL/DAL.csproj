@@ -50,6 +50,9 @@
     <Compile Include="DemoParametrizacion.cs" />
     <Compile Include="DemoSingleton.cs" />
     <Compile Include="Factories\ApplicationFactory.cs" />
+    <Compile Include="Implementations\Memory\Almacen.cs" />
+    <Compile Include="Implementations\Memory\MovimientoRepository.cs" />
+    <Compile Include="Implementations\Memory\ProductoRepository.cs" />
     <Compile Include="Implementations\PlainText\CustomerRepository.cs" />
     <Compile Include="Implementations\SqlServer\Adapter\CustomerAdapter.cs" />
     <Compile Include="Implementations\SqlServer\CustomerRepository.cs" />
@@ -62,7 +65,6 @@
     <None Include="Tools\Snippets\staments.snippet" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Implementations\Memory\" />
     <Folder Include="Implementations\PlainText\Adapter\" />
   </ItemGroup>
   <ItemGroup>

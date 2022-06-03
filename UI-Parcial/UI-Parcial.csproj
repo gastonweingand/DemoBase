@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ED69F2CC-F8E8-4C1F-B7E9-EB8EDC28907E}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DomainModel</RootNamespace>
-    <AssemblyName>DomainModel</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <ProjectGuid>{9DC1119E-E5CE-4517-8FE6-598086EF8F14}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>UI_Parcial</RootNamespace>
+    <AssemblyName>UI-Parcial</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,25 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer.cs" />
-    <Compile Include="DomainParcial\Almacen.cs" />
-    <Compile Include="DomainParcial\Deposito.cs" />
-    <Compile Include="DomainParcial\DetalleMovimiento.cs" />
-    <Compile Include="DomainParcial\Movimiento.cs" />
-    <Compile Include="DomainParcial\Producto.cs" />
-    <Compile Include="DomainParcial\Stock.cs" />
-    <Compile Include="DomainParcial\Tienda.cs" />
-    <Compile Include="DomainParcial\Usuario.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Services\Services.csproj">
-      <Project>{39225349-001e-4c38-a97d-09d534deb73a}</Project>
-      <Name>Services</Name>
-    </ProjectReference>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DomainParcial\Diagrama.cd" />
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{2b83ad36-6866-467d-8d40-6d2c032cdb93}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
+      <Project>{ed69f2cc-f8e8-4c1f-b7e9-eb8edc28907e}</Project>
+      <Name>DomainModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

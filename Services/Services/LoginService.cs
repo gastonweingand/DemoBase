@@ -9,7 +9,6 @@ namespace Services.Services
 {
     public static class LoginService
     {
-
         public static bool Login(Usuario usuario)
         {
             return false;
