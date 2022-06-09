@@ -11,8 +11,6 @@ using Services.Services.Extensions;
 using BLL.BusinessExceptions;
 using Services.DomainModel.Security.Composite;
 using BLL.Services;
-using Services.DomainModel.Security.Composite;
-using Services.Services;
 
 namespace UI
 {

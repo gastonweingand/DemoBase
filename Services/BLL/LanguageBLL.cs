@@ -19,7 +19,7 @@ namespace Services.BLL
             {
                 return ServiceFactory.LanguageRepository.Find(word);
             }
-            catch (WordNotFoundException ex)
+            catch (WordNotFoundException)
             {
                 ServiceFactory.LanguageRepository.WriteNewWord(word, String.Empty);
                 return word;

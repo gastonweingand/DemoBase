@@ -45,7 +45,7 @@ namespace BLL.Services
                 if (obj.DateBirth > DateTime.Now.AddYears(-18))
                     throw new ClienteMayorEdadException();
 
-                ApplicationFactory.CustomerRepository.Add(obj);
+                ApplicationFactory.UnitOfWork.Create().Repositories.CustomerRepository.Add(obj);
             }
             catch (ClienteMayorEdadException ex)
             {
@@ -80,7 +80,7 @@ namespace BLL.Services
         {
             try
             {
-                return ApplicationFactory.CustomerRepository.SelectOne(id);
+                return ApplicationFactory.UnitOfWork.Create().Repositories.CustomerRepository.SelectOne(id);
             }
             catch (Exception ex)
             {

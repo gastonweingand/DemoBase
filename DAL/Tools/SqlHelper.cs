@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Implementations.SqlServer;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -8,7 +9,7 @@ namespace DAL.Tools
 {
     internal static class SqlHelper
     {
-        readonly static string conString;
+        public static string conString { get; private set; }
 
         static SqlHelper()
         {

@@ -11,26 +11,52 @@ namespace UI_Parcial
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("STOCK INICIAL");
-            List<Almacen> listadoDBAlmacenes = MostrarStock();
+            //Desafío: Generar una implementación similar parcial con UnitOfWork
+
+            //Ejemplo de uso completo para un get de un producto determinado...
+            Producto producto = BLL.Services.ProductoService.Current.SelectOne(Guid.Parse("43605EBA-D451-45B9-BAC3-E0667BC18E90"));
             
+            //Generar una Tx completa con UnitOfWork y resolver los reportes solicitados
+
+
+
+
+
+
+
+
+
+
+
+
+            ////////////////////////DEMO IN MEMORY//////////////////////////////////////////////////
+
+            Console.WriteLine("STOCK INICIAL");
+            List<Almacen> listadoDBAlmacenes = MostrarStock();            
 
             Tienda carrefourBoulogne = (Tienda)listadoDBAlmacenes[0];
             Deposito depoPacheco = (Deposito)listadoDBAlmacenes[2];
 
             Producto productoTelevisor = listadoDBAlmacenes[0].Stock[0].Producto;
 
-            List<DetalleMovimiento> detalleStockMovilizar = new List<DetalleMovimiento>();
-            detalleStockMovilizar.Add(new DetalleMovimiento() { Producto = productoTelevisor, Cantidad = 99 });
+            List<DetalleMovimiento> detalleStockMovilizar1 = new List<DetalleMovimiento>();
+            detalleStockMovilizar1.Add(new DetalleMovimiento() { Producto = productoTelevisor, Cantidad = 99 });
+
+            List<DetalleMovimiento> detalleStockMovilizar2 = new List<DetalleMovimiento>();
+            detalleStockMovilizar2.Add(new DetalleMovimiento() { Producto = productoTelevisor, Cantidad = 1 });
+
+            List<DetalleMovimiento> detalleStockMovilizar3 = new List<DetalleMovimiento>();
+            detalleStockMovilizar3.Add(new DetalleMovimiento() { Producto = productoTelevisor, Cantidad = 5 });
 
             try
             {
-                BLL.Services.MovimientoService.Current.TransferirStock(depoPacheco, carrefourBoulogne, detalleStockMovilizar);
+                BLL.Services.MovimientoService.Current.TransferirStock(depoPacheco, carrefourBoulogne, detalleStockMovilizar1);
+                BLL.Services.MovimientoService.Current.TransferirStock(depoPacheco, carrefourBoulogne, detalleStockMovilizar2);
+                BLL.Services.MovimientoService.Current.TransferirStock(depoPacheco, carrefourBoulogne, detalleStockMovilizar3);                
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                throw;
             }            
 
             Console.WriteLine("STOCK FINAL");
@@ -46,8 +72,7 @@ namespace UI_Parcial
                 {
                     Console.WriteLine($"Producto: {detalle.Producto.Descripcion}, Cantidad: {detalle.Cantidad}");
                 }
-            }
-            
+            }            
         }
 
         private static List<Almacen> MostrarStock()

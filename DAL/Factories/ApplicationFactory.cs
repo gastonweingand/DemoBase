@@ -1,4 +1,5 @@
 ﻿using DAL.Contracts;
+using DAL.Contracts.UnitOfWork;
 using DomainModel;
 using DomainModel.DomainParcial;
 using System;
@@ -14,26 +15,26 @@ namespace DAL.Factories
     {
         private static string backendDS = ConfigurationManager.AppSettings["BackendDS"];
 
-        public static IGenericRepository<Customer> CustomerRepository { get; private set; }
-
-        public static IGenericRepository<Almacen> AlmacenRepository { get; private set; }
-
-        public static IGenericRepository<Movimiento> MovimientoRepository { get; private set; }
+        /// <summary>
+        /// Actualizo todos los repositorios a patrón UnitOfWork ya que todos los repositorios estarán contenidos
+        /// dentro de un contexto transaccional
+        /// </summary>
+        public static IUnitOfWork UnitOfWork { get; private set; }
 
         static ApplicationFactory()
         {
             if (backendDS == "sqlserver")
             {
-                CustomerRepository = new DAL.Implementations.SqlServer.CustomerRepository();
+                UnitOfWork = new Implementations.SqlServer.UnitOfWork.UnitOfWorkSqlServer();
             }
             else if (backendDS == "plaintext")
             {
-                CustomerRepository = new DAL.Implementations.PlainText.CustomerRepository();
+                //CustomerRepository = new DAL.Implementations.PlainText.CustomerRepository();
             }
             else if (backendDS == "memory")
             {
-                AlmacenRepository = new DAL.Implementations.Memory.AlmacenRepository();
-                MovimientoRepository = new DAL.Implementations.Memory.MovimientoRepository();
+                //AlmacenRepository = new DAL.Implementations.Memory.AlmacenRepository();
+                //MovimientoRepository = new DAL.Implementations.Memory.MovimientoRepository();
             }
         }
     }

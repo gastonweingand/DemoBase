@@ -49,6 +49,8 @@
     <Compile Include="Services\AlmacenService.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\MovimientoService.cs" />
+    <Compile Include="Services\ProductoService.cs" />
+    <None Include="Services\MovimientoService.cs.back" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

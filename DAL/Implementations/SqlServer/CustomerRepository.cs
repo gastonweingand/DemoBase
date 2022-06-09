@@ -15,7 +15,6 @@ namespace DAL.Implementations.SqlServer
 {
     internal class CustomerRepository : IGenericRepository<Customer>
     {
-
         #region Statements
         private string InsertStatement
         {

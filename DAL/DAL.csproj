@@ -47,6 +47,9 @@
   <ItemGroup>
     <Compile Include="Contracts\IAdapter.cs" />
     <Compile Include="Contracts\IGenericRepository.cs" />
+    <Compile Include="Contracts\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="Contracts\UnitOfWork\IUnitOfWorkAdapter.cs" />
+    <Compile Include="Contracts\UnitOfWork\IUnitOfWorkRepository.cs" />
     <Compile Include="DemoParametrizacion.cs" />
     <Compile Include="DemoSingleton.cs" />
     <Compile Include="Factories\ApplicationFactory.cs" />
@@ -55,7 +58,15 @@
     <Compile Include="Implementations\Memory\ProductoRepository.cs" />
     <Compile Include="Implementations\PlainText\CustomerRepository.cs" />
     <Compile Include="Implementations\SqlServer\Adapter\CustomerAdapter.cs" />
+    <Compile Include="Implementations\SqlServer\Adapter\ProductoAdapter.cs" />
+    <Compile Include="Implementations\SqlServer\AlmacenRepository.cs" />
     <Compile Include="Implementations\SqlServer\CustomerRepository.cs" />
+    <Compile Include="Implementations\SqlServer\MovimientoRepository.cs" />
+    <Compile Include="Implementations\SqlServer\ProductoRepository.cs" />
+    <Compile Include="Implementations\SqlServer\Repository.cs" />
+    <Compile Include="Implementations\SqlServer\UnitOfWork\UnitOfWorkSqlServer.cs" />
+    <Compile Include="Implementations\SqlServer\UnitOfWork\UnitOfWorkSqlServerAdapter.cs" />
+    <Compile Include="Implementations\SqlServer\UnitOfWork\UnitOfWorkSqlServerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\SqlHelper.cs" />
   </ItemGroup>

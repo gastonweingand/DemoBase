@@ -46,7 +46,7 @@ namespace BLL.Services
 
         public IEnumerable<Almacen> SelectAll()
         {
-            return ApplicationFactory.AlmacenRepository.SelectAll();
+            return ApplicationFactory.UnitOfWork.Create().Repositories.AlmacenRepository.SelectAll();
         }
 
         public Almacen SelectOne(Guid id)

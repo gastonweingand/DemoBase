@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Contracts
 {
-    public interface IGenericBusinessService <T>
+    internal interface IGenericBusinessService <T>
     {
         void Add(T obj);
 
