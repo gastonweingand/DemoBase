@@ -13,7 +13,12 @@ namespace DAL.Implementations.SqlServer
 {
     internal class ProductoRepository : Repository, IGenericRepository<Producto>
     {
+        
+        public ProductoRepository(SqlConnection context, SqlTransaction _transaction)
+            : base(context, _transaction)
+        {
 
+        }
         #region Statements
         private string InsertStatement
         {
@@ -41,14 +46,15 @@ namespace DAL.Implementations.SqlServer
         }
         #endregion
 
-        public ProductoRepository(SqlConnection context, SqlTransaction _transaction) 
-            :base(context, _transaction)
-        {
-
-        }
+        
         public void Add(Producto obj)
         {
-            throw new NotImplementedException();
+            var execProducto = ExecuteScalar(InsertStatement, System.Data.CommandType.Text, new SqlParameter[] {
+                new SqlParameter("@Codigo", obj.Codigo),
+                new SqlParameter("@Descripcion", obj.Descripcion),
+                new SqlParameter("@Precio", obj.Precio)
+            });
+            //_context.Dispose();
         }
 
         public void Delete(Guid id)
@@ -63,12 +69,29 @@ namespace DAL.Implementations.SqlServer
 
         public Producto SelectOne(Guid id)
         {
-            Producto customerGet = null;
 
+            Producto productoGet = null;
+
+            var readerProducto = ExecuteReader(SelectOneStatement, System.Data.CommandType.Text,
+                                        new SqlParameter[] { new SqlParameter("@Id", id) });
+            object[] values = new object[readerProducto.FieldCount];
+
+            if (readerProducto.Read())
+            {
+                readerProducto.GetValues(values);
+                productoGet = ProductoAdapter.Current.Adapt(values);
+            }
+            
+            //Esto no funciona. Preguntar a Gaston 2022 06 11 => _transaction.Commit();
+            _context.Dispose();
+
+
+            /*
+             * Manera anterior. El using cierra el dr
             try
             {
-                using (var reader = ExecuteReader(SelectOneStatement, System.Data.CommandType.Text,
-                                                new SqlParameter[] { new SqlParameter("@Id", id) }))
+                using (var reader = ExecuteReader( SelectOneStatement, System.Data.CommandType.Text,
+                                        new SqlParameter[] { new SqlParameter("@Id", id) } )   )
                 {
                     object[] values = new object[reader.FieldCount];
 
@@ -83,8 +106,31 @@ namespace DAL.Implementations.SqlServer
             {
                 ex.Handle(this);
             }
+            */
 
-            return customerGet;
+            return productoGet;
+        }
+        public IEnumerable<Producto> SelectALl(string sFilterExpression)
+        {
+
+            string sqlStatement = sFilterExpression ?? SelectAllStatement;
+
+            sqlStatement = (sqlStatement == sFilterExpression) ? SelectAllStatement +
+                            " where " + sFilterExpression : sqlStatement;
+
+            var readerProducto = ExecuteReader(SelectOneStatement, System.Data.CommandType.Text);
+
+
+            
+                Object[] values = new Object[readerProducto.FieldCount];
+
+                while (readerProducto.Read())
+                {
+                    readerProducto.GetValues(values);
+                    yield return ProductoAdapter.Current.Adapt(values);
+                }
+            
+            _context.Dispose();
         }
 
         public void Update(Producto obj)

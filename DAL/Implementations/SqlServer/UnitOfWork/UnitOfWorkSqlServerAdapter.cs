@@ -24,6 +24,7 @@ namespace DAL.Implementations.SqlServer.UnitOfWork
             if (_transaction != null)
             {
                 _transaction.Dispose();
+               
             }
 
             if (_context != null)

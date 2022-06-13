@@ -32,8 +32,9 @@ namespace DAL.Implementations.SqlServer.Adapter
         {
             Producto customer = new Producto()
             {
+
                 Id = Guid.Parse(values[0].ToString()),
-                Codigo = int.Parse(values[1].ToString()),
+                Codigo = values[1].ToString(),
                 Descripcion = values[2].ToString(),
                 Precio = decimal.Parse(values[3].ToString()),
             };
