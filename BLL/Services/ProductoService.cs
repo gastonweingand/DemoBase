@@ -33,7 +33,11 @@ namespace BLL.Services
 
         public void Add(Producto obj)
         {
-            throw new NotImplementedException();
+            using (var context = ApplicationFactory.UnitOfWork.Create())
+            {
+                context.Repositories.ProductoRepository.Add(obj);
+                context.SaveChanges();
+            }
         }
 
         public void Update(Producto obj)
@@ -57,9 +61,23 @@ namespace BLL.Services
 
         public Producto SelectOne(Guid id)
         {
+            ///Crea todos los repositorios juntos
+            ///
             using (var context = ApplicationFactory.UnitOfWork.Create())
             {
                 return context.Repositories.ProductoRepository.SelectOne(id);
+            }
+        }
+        public Producto SelectAll(String sFilter)
+        {
+            ///Crea todos los repositorios juntos
+            ///
+            using (var context = ApplicationFactory.UnitOfWork.Create())
+            {
+                //IEnumerable<Producto> productos;
+                //return context.Repositories.ProductoRepository.SelectAll();// .SelectAll( " id= "); // (sFilter);
+                //return productos;
+                return null; 
             }
         }
     }

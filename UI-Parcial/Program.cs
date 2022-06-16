@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BLL.Services;
 
 namespace UI_Parcial
 {
@@ -15,13 +14,31 @@ namespace UI_Parcial
             //Desafío: Generar una implementación similar parcial con UnitOfWork
 
             //Ejemplo de uso completo para un get de un producto determinado...
-            Producto producto = ProductoService.Current.SelectOne(Guid.Parse("43605EBA-D451-45B9-BAC3-E0667BC18E90"));
-            
+            Producto producto = BLL.Services.ProductoService.Current.SelectOne(Guid.Parse("43605EBA-D451-45B9-BAC3-E0667BC18E90"));
+            Console.WriteLine("Prod " + producto.Descripcion);
+            Console.WriteLine("Cod " + producto.Codigo);
+            Console.WriteLine("Precio " + producto.Precio);
+
+
             //Generar una Tx completa con UnitOfWork y resolver los reportes solicitados
 
+            Console.WriteLine("Paso 1: Completdo el artículo. Ojo que tengo con distinto tipo de dato el codigo de articulo... Presione cualquier tecla");
+            Console.ReadKey();
+
+            Producto oProducto = new Producto();
+            oProducto.Codigo = "PELOTA-FT-N5";
+            oProducto.Descripcion = "PELOTA FUTBOL NRO 5";
+            oProducto.Precio = 1500;
+            BLL.Services.ProductoService.Current.Add(oProducto);
+            Console.WriteLine("Paso 2: Completé un Insert... Presione cualquier tecla");
+            Console.ReadKey();
 
 
 
+
+            Console.WriteLine("Hasta acá llegamos bien modificando el repository. (es el fin del using)");
+
+            return; 
 
 
 

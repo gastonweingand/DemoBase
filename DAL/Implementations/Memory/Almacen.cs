@@ -15,7 +15,7 @@ namespace DAL.Implementations.Memory
         public AlmacenRepository()
         {
             Producto televisor = new Producto();
-            televisor.Codigo = 120;
+            televisor.Codigo = "120";
             televisor.Descripcion = "Tv 60 pulgadas";
             televisor.Precio = 50000;
 
