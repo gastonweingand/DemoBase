@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLL.Services;
 
 namespace UI_Parcial
 {
@@ -14,7 +15,7 @@ namespace UI_Parcial
             //Desafío: Generar una implementación similar parcial con UnitOfWork
 
             //Ejemplo de uso completo para un get de un producto determinado...
-            Producto producto = BLL.Services.ProductoService.Current.SelectOne(Guid.Parse("43605EBA-D451-45B9-BAC3-E0667BC18E90"));
+            Producto producto = ProductoService.Current.SelectOne(Guid.Parse("43605EBA-D451-45B9-BAC3-E0667BC18E90"));
             
             //Generar una Tx completa con UnitOfWork y resolver los reportes solicitados
 

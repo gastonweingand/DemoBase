@@ -57,7 +57,6 @@ namespace BLL.Services
 
             using (var context = ApplicationFactory.UnitOfWork.Create())
             {
-
                 //1) Restar del Depósitos las cantidad-productos solicitadas
                 foreach (var item in detalle)
                 {
