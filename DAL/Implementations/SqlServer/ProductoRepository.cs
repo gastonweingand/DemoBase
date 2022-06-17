@@ -13,7 +13,7 @@ namespace DAL.Implementations.SqlServer
 {
     internal class ProductoRepository : Repository, IGenericRepository<Producto>
     {
-        
+
         public ProductoRepository(SqlConnection context, SqlTransaction _transaction)
             : base(context, _transaction)
         {
@@ -22,7 +22,7 @@ namespace DAL.Implementations.SqlServer
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Producto] (Codigo, Descripcion, Precio) VALUES (@Codigo, @Descripcion, @Precio)";
+            get => "INSERT INTO [dbo].[Producto] (Id, Codigo, Descripcion, Precio) VALUES (@Id, @Codigo, @Descripcion, @Precio)";
         }
 
         private string UpdateStatement
@@ -46,15 +46,29 @@ namespace DAL.Implementations.SqlServer
         }
         #endregion
 
-        
+
         public void Add(Producto obj)
         {
-            var execProducto = ExecuteScalar(InsertStatement, System.Data.CommandType.Text, new SqlParameter[] {
-                new SqlParameter("@Codigo", obj.Codigo),
-                new SqlParameter("@Descripcion", obj.Descripcion),
-                new SqlParameter("@Precio", obj.Precio)
-            });
-            //_context.Dispose();
+            try
+            {
+                //Verificar porque solo funciona con SP -> https://stackoverflow.com/questions/2041013/sql-server-return-uniqueidentifier-from-stored-procedure
+
+                //obj.Id = Guid.Parse(ExecuteScalar(InsertStatement, System.Data.CommandType.Text, new SqlParameter[] {
+                //                    new SqlParameter("@Codigo", obj.Codigo),
+                //                    new SqlParameter("@Descripcion", obj.Descripcion),
+                //                    new SqlParameter("@Precio", obj.Precio)
+                //              }).ToString());
+
+                ExecuteNonQuery(InsertStatement, System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+                                    new SqlParameter("@Codigo", obj.Codigo),
+                                    new SqlParameter("@Descripcion", obj.Descripcion),
+                                    new SqlParameter("@Precio", obj.Precio),
+                                    new SqlParameter("@Id", Guid.NewGuid()) });
+            }
+            catch (Exception ex)
+            {
+                ex.Handle(this);
+            }
         }
 
         public void Delete(Guid id)
@@ -64,55 +78,41 @@ namespace DAL.Implementations.SqlServer
 
         public IEnumerable<Producto> SelectAll()
         {
-            throw new NotImplementedException();
+            List<Producto> productos = new List<Producto>();
+
+            using (var readerProducto = ExecuteReader(SelectAllStatement, System.Data.CommandType.Text))
+            {
+                Object[] values = new Object[readerProducto.FieldCount];
+
+                while (readerProducto.Read())
+                {
+                    readerProducto.GetValues(values);
+                    productos.Add(ProductoAdapter.Current.Adapt(values));
+                }
+            }
+
+            return productos;
         }
 
         public Producto SelectOne(Guid id)
         {
-
             Producto productoGet = null;
 
-            var readerProducto = ExecuteReader(SelectOneStatement, System.Data.CommandType.Text,
-                                        new SqlParameter[] { new SqlParameter("@Id", id) });
-            object[] values = new object[readerProducto.FieldCount];
-
-            if (readerProducto.Read())
+            using (var readerProducto = ExecuteReader(SelectOneStatement, System.Data.CommandType.Text,
+                                        new SqlParameter[] { new SqlParameter("@Id", id) }))
             {
-                readerProducto.GetValues(values);
-                productoGet = ProductoAdapter.Current.Adapt(values);
-            }
-            
-            //Esto no funciona. Preguntar a Gaston 2022 06 11 => _transaction.Commit();
-            _context.Dispose();
+                object[] values = new object[readerProducto.FieldCount];
 
-
-            /*
-             * Manera anterior. El using cierra el dr
-            try
-            {
-                using (var reader = ExecuteReader( SelectOneStatement, System.Data.CommandType.Text,
-                                        new SqlParameter[] { new SqlParameter("@Id", id) } )   )
+                if (readerProducto.Read())
                 {
-                    object[] values = new object[reader.FieldCount];
-
-                    if (reader.Read())
-                    {
-                        reader.GetValues(values);
-                        customerGet = ProductoAdapter.Current.Adapt(values);
-                    }
+                    readerProducto.GetValues(values);
+                    productoGet = ProductoAdapter.Current.Adapt(values);
                 }
+                return productoGet;
             }
-            catch (Exception ex)
-            {
-                ex.Handle(this);
-            }
-            */
-
-            return productoGet;
         }
         public IEnumerable<Producto> SelectALl(string sFilterExpression)
         {
-
             string sqlStatement = sFilterExpression ?? SelectAllStatement;
 
             sqlStatement = (sqlStatement == sFilterExpression) ? SelectAllStatement +
@@ -120,17 +120,13 @@ namespace DAL.Implementations.SqlServer
 
             var readerProducto = ExecuteReader(SelectOneStatement, System.Data.CommandType.Text);
 
+            Object[] values = new Object[readerProducto.FieldCount];
 
-            
-                Object[] values = new Object[readerProducto.FieldCount];
-
-                while (readerProducto.Read())
-                {
-                    readerProducto.GetValues(values);
-                    yield return ProductoAdapter.Current.Adapt(values);
-                }
-            
-            _context.Dispose();
+            while (readerProducto.Read())
+            {
+                readerProducto.GetValues(values);
+                yield return ProductoAdapter.Current.Adapt(values);
+            }
         }
 
         public void Update(Producto obj)
