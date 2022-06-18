@@ -1,5 +1,6 @@
 ﻿using Controller.Controllers;
 using Controller.ViewModels;
+using Services.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace WinApp
 {
@@ -33,6 +35,14 @@ namespace WinApp
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ExportarAExcel oExportarAExcel = new ExportarAExcel();
+            oExportarAExcel.NombredeArchivoDefault = "Productos";
+            oExportarAExcel.grdParam = dataGridView1;
+            oExportarAExcel.guardar();
         }
     }
 }

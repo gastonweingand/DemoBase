@@ -105,6 +105,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{2B83AD36-6866-467D-8D40-6D2C032CDB93}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Controller\Controller.csproj">
       <Project>{b3823627-d7a0-405c-842b-880f49d328d6}</Project>
       <Name>Controller</Name>
@@ -116,6 +120,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="img\leonardo-da-vinci.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="img\excel.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
