@@ -25,9 +25,9 @@ namespace WinApp
             try
             {
                 ProductoView producto = new ProductoView();
-                //producto.Codigo = "";
-                //producto.Descripcion = "Test de desc.";
-                producto.Precio = 1234;
+                producto.Codigo = txtCodigo.Text;
+                producto.Descripcion = txtDescripcion.Text;
+                producto.Precio = Convert.ToDecimal(txtPrecio.Text);
 
                 controller.Add(producto);
             }

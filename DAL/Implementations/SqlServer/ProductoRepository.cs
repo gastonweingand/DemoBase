@@ -59,7 +59,7 @@ namespace DAL.Implementations.SqlServer
                 //                    new SqlParameter("@Precio", obj.Precio)
                 //              }).ToString());
 
-                ExecuteNonQuery(InsertStatement, System.Data.CommandType.StoredProcedure, new SqlParameter[] {
+                ExecuteNonQuery(InsertStatement, System.Data.CommandType.Text, new SqlParameter[] {
                                     new SqlParameter("@Codigo", obj.Codigo),
                                     new SqlParameter("@Descripcion", obj.Descripcion),
                                     new SqlParameter("@Precio", obj.Precio),

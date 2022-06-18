@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using BLL.Services;
 using DomainModel.DomainParcial;
 using Controller.ViewModels.Helpers;
-using Controller.Validators;
+using Controllers.Validators;
 
 namespace Controller.Controllers
 {
