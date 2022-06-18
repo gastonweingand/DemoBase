@@ -16,8 +16,8 @@ namespace WinApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            frmAltaProducto oFrmAltaProducto = new frmAltaProducto();
-            oFrmAltaProducto.Show();
+            frmMenuPrincipal oFrmMenuPrincipal = new frmMenuPrincipal();
+            oFrmMenuPrincipal.Show();
             Application.Run();
         }
     }

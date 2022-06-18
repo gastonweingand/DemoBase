@@ -36,5 +36,13 @@ namespace WinApp
                 MessageBox.Show(ex.Message);
             }          
         }
+
+        private void frmAltaProducto_Load(object sender, EventArgs e)
+        {
+            label1.Text = "Codigo";
+            label2.Text = "Descripción";
+            label3.Text = "Precio";
+            
+        }
     }
 }

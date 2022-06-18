@@ -33,12 +33,15 @@ namespace WinApp
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCrearProducto
             // 
-            this.btnCrearProducto.Location = new System.Drawing.Point(193, 226);
-            this.btnCrearProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCrearProducto.Location = new System.Drawing.Point(139, 193);
+            this.btnCrearProducto.Margin = new System.Windows.Forms.Padding(4);
             this.btnCrearProducto.Name = "btnCrearProducto";
             this.btnCrearProducto.Size = new System.Drawing.Size(171, 28);
             this.btnCrearProducto.TabIndex = 0;
@@ -57,7 +60,7 @@ namespace WinApp
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(139, 88);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(100, 22);
+            this.txtDescripcion.Size = new System.Drawing.Size(308, 22);
             this.txtDescripcion.TabIndex = 2;
             // 
             // txtPrecio
@@ -67,18 +70,49 @@ namespace WinApp
             this.txtPrecio.Size = new System.Drawing.Size(100, 22);
             this.txtPrecio.TabIndex = 3;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(32, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 16);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "label1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(35, 93);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 16);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "label2";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(38, 139);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 16);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "label3";
+            // 
             // frmAltaProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 324);
+            this.ClientSize = new System.Drawing.Size(476, 245);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.btnCrearProducto);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmAltaProducto";
             this.Text = "Alta de producto";
+            this.Load += new System.EventHandler(this.frmAltaProducto_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -90,6 +124,9 @@ namespace WinApp
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtPrecio;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 

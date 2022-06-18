@@ -56,7 +56,12 @@ namespace BLL.Services
 
         public IEnumerable<Producto> SelectAll()
         {
-            throw new NotImplementedException();
+            List<Producto> lstProductos = new List<Producto>();
+            using (var context = ApplicationFactory.UnitOfWork.Create())
+            {
+                lstProductos = context.Repositories.ProductoRepository.SelectAll().ToList();
+            }
+            return lstProductos;
         }
 
         public Producto SelectOne(Guid id)

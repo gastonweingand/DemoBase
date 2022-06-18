@@ -56,6 +56,7 @@
     <Compile Include="Contracts\IRemoveController.cs" />
     <Compile Include="Contracts\IUpdateController.cs" />
     <Compile Include="Controllers\AltaProductoController.cs" />
+    <Compile Include="Controllers\ProductoGetController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\Validators\ViewValidatorAttribute.cs" />
     <Compile Include="ViewModels\Mapper\MapperHelper.cs" />
