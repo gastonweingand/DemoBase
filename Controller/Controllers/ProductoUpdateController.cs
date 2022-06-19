@@ -12,16 +12,13 @@ using Controllers.Validators;
 
 namespace Controller.Controllers
 {
-    public class AltaProductoController : ICreateController<ProductoView>
+    public class ProductoUpdateController : IUpdateController<ProductoView>
     {
         [ViewValidator]
-        public void Add(ProductoView obj)
+        public void Update(ProductoView obj)
         {
             var productoDTO = MapperHelper.GetMapper().Map<ProductoView, Producto>(obj);
-            ProductoService.Current.Add(productoDTO);
+            ProductoService.Current.Update(productoDTO);
         }
-
- 
-
     }
 }

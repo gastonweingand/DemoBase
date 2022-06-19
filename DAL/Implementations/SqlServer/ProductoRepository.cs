@@ -27,7 +27,7 @@ namespace DAL.Implementations.SqlServer
 
         private string UpdateStatement
         {
-            get => "UPDATE [dbo].[Producto] SET (Codigo, Descripcion, Precio) WHERE Id = @Id";
+            get => "UPDATE [dbo].[Producto] SET Codigo=@Codigo, Descripcion=@Descripcion, Precio=@Precio WHERE Id = @Id";
         }
 
         private string DeleteStatement
@@ -131,7 +131,18 @@ namespace DAL.Implementations.SqlServer
 
         public void Update(Producto obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ExecuteNonQuery(UpdateStatement, System.Data.CommandType.Text, new SqlParameter[] {
+                                    new SqlParameter("@Codigo", obj.Codigo),
+                                    new SqlParameter("@Descripcion", obj.Descripcion),
+                                    new SqlParameter("@Precio", obj.Precio),
+                                    new SqlParameter("@Id", obj.Id) });
+            }
+            catch (Exception ex)
+            {
+                ex.Handle(this);
+            }
         }
     }
 }

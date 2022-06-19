@@ -46,5 +46,11 @@ namespace WinApp
             frmProductosALl oFrmProductosALL = new frmProductosALl();
             oFrmProductosALL.Show();
         }
+
+        private void editarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmProductoEdit ofrmProductoEdit = new frmProductoEdit();
+            ofrmProductoEdit.Show();
+        }
     }
 }

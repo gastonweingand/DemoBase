@@ -27,8 +27,6 @@ namespace WinApp
             try
             {
                 ProductoView producto = new ProductoView();
-                
-
                 dataGridView1.DataSource= controller.GetAll();
             }
             catch (Exception ex)

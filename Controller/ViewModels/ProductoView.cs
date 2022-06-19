@@ -10,7 +10,7 @@ namespace Controller.ViewModels
 {
     public class ProductoView
     {
-        [Browsable(false)]
+        //[Browsable(false)]
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Código es requerido")]

@@ -58,6 +58,12 @@
     <Compile Include="frmMenuPrincipal.Designer.cs">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProductoEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProductoEdit.Designer.cs">
+      <DependentUpon>frmProductoEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProductosALl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProductoEdit.resx">
+      <DependentUpon>frmProductoEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProductosALl.resx">
       <DependentUpon>frmProductosALl.cs</DependentUpon>
@@ -123,6 +132,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="img\excel.png" />
+    <None Include="Resources\icoExit.png" />
+    <None Include="Resources\icoEdit.png" />
+    <None Include="Resources\icoUndo.png" />
+    <None Include="Resources\GUARDAR.GIF" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
