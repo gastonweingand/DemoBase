@@ -132,6 +132,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="img\excel.png" />
+    <None Include="img\ICO\icons8-más-16.png" />
+    <None Include="img\ICO\icons8-apagar-16.png" />
+    <None Include="img\ICO\icons8-guardar-cerrar-16.png" />
+    <None Include="img\ICO\icons8-volver-16.png" />
+    <None Include="img\ICO\icons8-reiniciar-16.png" />
+    <None Include="img\ICO\icons8-búsqueda-16.png" />
+    <None Include="img\ICO\icons8-por-nueva-copia-16.png" />
     <None Include="Resources\icoExit.png" />
     <None Include="Resources\icoEdit.png" />
     <None Include="Resources\icoUndo.png" />

@@ -43,7 +43,6 @@ namespace WinApp
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
 
-
             dataGridView1.Columns[0].Visible = false;//id
             dataGridView1.Columns[1].Visible = true;//Codigo
             dataGridView1.Columns[2].Visible = true;//Descripcion
@@ -55,9 +54,6 @@ namespace WinApp
             dataGridView1.Columns[2].Width = 200;
             dataGridView1.Columns[3].Width = 80;
             dataGridView1.Columns[4].Width = 300;
-
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -70,6 +66,7 @@ namespace WinApp
                 oProductoView.Codigo = txtCodigo.Text;
                 oProductoView.Precio = Decimal.Parse(txtPrecio.Text);
                 controllerEdit.Update(oProductoView);
+                SetGrid();
             }
             catch (Exception ex)
             {
@@ -90,7 +87,6 @@ namespace WinApp
             txtCodigo.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
             txtDescripcion.Text= dataGridView1.CurrentRow.Cells[2].Value.ToString();
             txtPrecio.Text= dataGridView1.CurrentRow.Cells[3].Value.ToString();
-
         }
         private void CoordinarBotones(int iOpcion)
         {
@@ -107,13 +103,11 @@ namespace WinApp
                 this.btnSave.Visible = true;
                 this.btnUndo.Visible = true;
                 this.btnExit.Visible = true;
-
             }
 
         }
         private void EnableControls()
         {
-
             txtCodigo.Enabled = true;
             txtDescripcion.Enabled = true;
             txtPrecio.Enabled = true;
@@ -123,8 +117,6 @@ namespace WinApp
             txtCodigo.Enabled = false;
             txtDescripcion.Enabled = false;
             txtPrecio.Enabled = false;
-
-
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -144,6 +136,58 @@ namespace WinApp
         {
             
             Close();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            /*
+            foreach (DataGridViewRow Row in dataGridView1.Rows)
+            {
+                String strFila = Row.Index.ToString();
+                string Valor = Convert.ToString(Row.Cells["Descripcion"].Value);
+
+                if (Valor == this.txtBusqueda.Text)
+                {
+                    int iFila = Row.Index;
+                    dataGridView1.Rows[iFila].DefaultCellStyle.BackColor = Color.Red;
+                }
+            }*/
+            foreach (DataGridViewRow Row in dataGridView1.Rows)
+            {
+                String strFila = Row.Index.ToString();
+                foreach (DataGridViewCell cell in Row.Cells)
+                {
+                    string Valor = Convert.ToString(cell.Value);
+                    if (Valor == this.txtBusqueda.Text)
+                    {
+                        dataGridView1.Rows[Convert.ToInt32(strFila)].DefaultCellStyle.BackColor = Color.Red;
+                    }
+                }
+
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow Row in dataGridView1.Rows)
+            {
+                String strFila = Row.Index.ToString();
+                foreach (DataGridViewCell cell in Row.Cells)
+                {
+                    string Valor = Convert.ToString(cell.Value);
+                    int iLong = (this.txtBusqueda.Text.Trim()).Length;
+                    if (Valor.Substring(0,iLong) == this.txtBusqueda.Text.Trim())
+                    {
+                        dataGridView1.Rows[Convert.ToInt32(strFila)].DefaultCellStyle.BackColor = Color.Red;
+                    }
+                }
+
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SetGrid();
         }
     }
 }
