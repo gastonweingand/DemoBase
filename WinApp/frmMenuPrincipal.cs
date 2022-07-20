@@ -52,5 +52,23 @@ namespace WinApp
             frmProductoEdit ofrmProductoEdit = new frmProductoEdit();
             ofrmProductoEdit.Show();
         }
+
+        private void usuarioTestCompositeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUsuarioTest oFrmUsuarioTest=new frmUsuarioTest();
+            oFrmUsuarioTest.Show();
+        }
+
+        private void testCompositeRepositoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPatentesDB oFrmPatentesDB = new frmPatentesDB();
+            oFrmPatentesDB.Show();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmUsoFactory oFrmUsoFactory = new frmUsoFactory();
+            oFrmUsoFactory.Show();
+        }
     }
 }

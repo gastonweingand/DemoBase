@@ -58,6 +58,12 @@
     <Compile Include="frmMenuPrincipal.Designer.cs">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPatentesDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPatentesDB.Designer.cs">
+      <DependentUpon>frmPatentesDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProductoEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,18 @@
     <Compile Include="frmProductosALl.Designer.cs">
       <DependentUpon>frmProductosALl.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUsoFactory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsoFactory.Designer.cs">
+      <DependentUpon>frmUsoFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsuarioTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsuarioTest.Designer.cs">
+      <DependentUpon>frmUsuarioTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAltaProducto.resx">
@@ -78,11 +96,20 @@
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPatentesDB.resx">
+      <DependentUpon>frmPatentesDB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmProductoEdit.resx">
       <DependentUpon>frmProductoEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProductosALl.resx">
       <DependentUpon>frmProductosALl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsoFactory.resx">
+      <DependentUpon>frmUsoFactory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsuarioTest.resx">
+      <DependentUpon>frmUsuarioTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -121,6 +148,10 @@
     <ProjectReference Include="..\Controller\Controller.csproj">
       <Project>{b3823627-d7a0-405c-842b-880f49d328d6}</Project>
       <Name>Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
+      <Project>{ED69F2CC-F8E8-4C1F-B7E9-EB8EDC28907E}</Project>
+      <Name>DomainModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{39225349-001e-4c38-a97d-09d534deb73a}</Project>

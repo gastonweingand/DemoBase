@@ -71,7 +71,7 @@ namespace Services.DAL.Implementations
         }
 
         public IEnumerable<Patente> SelectAll()
-        {
+        {   
             List<Patente> patentes = new List<Patente>();
             Patente patenteGet = null;
 
